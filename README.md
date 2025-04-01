@@ -1,8 +1,8 @@
 # AutoRoster
 
-Auto Employee Scheduling System
+##Auto Employee Scheduling System
 
-Overview
+###Overview
 
 This Python script automatically generates a weekly work schedule for employees, ensuring fair distribution of shifts while considering availability constraints. The system assigns charge persons and other employees while limiting the number of shifts per worker.
 
