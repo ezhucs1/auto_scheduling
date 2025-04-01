@@ -28,8 +28,10 @@ Required libraries: random, csv
 
 Clone the Repository
 
-#git clone https://github.com/your-username/auto-scheduling-system.git
-#cd auto-scheduling-system
+```
+git clone https://github.com/your-username/auto-scheduling-system.git
+cd auto-scheduling-system
+```
 
 Usage
 
