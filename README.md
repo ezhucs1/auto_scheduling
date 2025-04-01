@@ -28,6 +28,8 @@ Required libraries: random, csv
 
 Clone the Repository
 
+******************************************************
+
 For Google Colab:
 ```
 !git clone https://github.com/eggrollqq/AutoRoster.git
@@ -37,10 +39,11 @@ cd AutoRoster
 Usage
 
 Run the script using:
-For Google Colab:
 ```
 !python auto_roster.py
 ```
+
+******************************************************
 
 Output Files
 
