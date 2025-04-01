@@ -37,7 +37,9 @@ Usage
 
 Run the script using:
 
+```
 python schedule_generator.py
+```
 
 Output Files
 
