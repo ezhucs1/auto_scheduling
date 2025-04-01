@@ -66,8 +66,3 @@ routine_work_days: Predefined workdays for certain employees.
 ### License
 
 MIT License
-
-Contact
-
-For issues or suggestions, create an issue in the GitHub repository.
-
