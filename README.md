@@ -31,7 +31,7 @@ Clone the Repository
 ******************************************************
 
 For Google Colab:
-```
+```bash
 !git clone https://github.com/eggrollqq/AutoRoster.git
 cd AutoRoster
 ```
@@ -39,7 +39,7 @@ cd AutoRoster
 Usage
 
 Run the script using:
-```
+```bash
 !python auto_roster.py
 ```
 
