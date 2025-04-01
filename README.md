@@ -38,7 +38,7 @@ Usage
 Run the script using:
 
 ```
-python schedule_generator.py
+python auto_roster.py
 ```
 
 Output Files
