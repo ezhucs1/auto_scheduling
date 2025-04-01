@@ -1,12 +1,12 @@
 # AutoRoster
 
-Auto Employee Scheduling System
+## Auto Employee Scheduling System
 
 ### Overview
 
 This Python script automatically generates a weekly work schedule for employees, ensuring fair distribution of shifts while considering availability constraints. The system assigns charge persons and other employees while limiting the number of shifts per worker.
 
-Features
+### Features
 
 Automatic shift allocation: Assigns charge persons and other employees based on availability.
 
@@ -18,7 +18,7 @@ Schedule validation: Identifies and highlights under-scheduled days and employee
 
 CSV output: Saves the generated schedule as weekly_schedule.csv and highlights issues in highlighted_schedule.csv.
 
-Installation
+### Installation
 
 Prerequisites
 
@@ -45,13 +45,13 @@ Run the script using:
 
 ******************************************************
 
-Output Files
+### Output Files
 
 weekly_schedule.csv: The generated weekly schedule.
 
 highlighted_schedule.csv: The schedule with under-scheduled employees and days highlighted.
 
-Configuration
+### Configuration
 
 You can modify the following variables in the script to adjust scheduling:
 
@@ -63,13 +63,9 @@ MAX_SHIFTS: Maximum shifts per employee per week.
 
 routine_work_days: Predefined workdays for certain employees.
 
-License
+### License
 
-Choose an appropriate license, such as MIT or GPL, based on your preference.
-
-Contributing
-
-Feel free to fork the repository and submit pull requests for improvements!
+MIT License
 
 Contact
 
