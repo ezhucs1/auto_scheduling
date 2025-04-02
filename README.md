@@ -1,4 +1,4 @@
-# AutoRoster
+# Auto Scheduling
 
 ## Auto Employee Scheduling System (working progress)
 
@@ -32,15 +32,15 @@ Clone the Repository
 
 For Google Colab:
 ```bash
-!git clone https://github.com/eggrollqq/AutoRoster.git
-cd AutoRoster
+!git clone https://github.com/eggrollqq/auto_scheduling.git
+cd auto_scheduling
 ```
 
 Usage
 
 Run the script using:
 ```bash
-!python auto_roster.py
+!python auto_scheduling.py
 ```
 
 ******************************************************
