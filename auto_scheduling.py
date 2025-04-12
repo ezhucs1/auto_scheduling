@@ -8,36 +8,47 @@ all_employees = charge_persons + full_time
 
 # Max shifts each week per employee
 MAX_SHIFTS = 3
+weeks = 6
+weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+days = [f'Week {w+1} {day}' for w in range(weeks) for day in weekdays]
 
-# Routine schedules (people who can only work on certain days)
+# Routine work days (1 = Sunday ... 7 = Saturday)
 routine_work_days = {
-    'Evan': [1, 6, 7]
+    'Evan': [1, 6, 7]  # Evan works Sunday, Friday, Saturday
 }
 
-# Track shifts assigned per employee
-shift_count = {employee: 0 for employee in all_employees}
-
-# Generate schedule (arr[1] = Sunday)
-days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+# Track weekly shifts assigned per employee
+shift_count = {employee: [0] * weeks for employee in all_employees}
 
 # Initialize schedule dictionary
 schedule = {name: [name] + [''] * len(days) for name in all_employees}
 
 # Assign routine schedule staff first
 for employee, allowed_days in routine_work_days.items():
-    for day in allowed_days:
-        if shift_count[employee] < MAX_SHIFTS:
-            if schedule[employee][day] == '':
-                schedule[employee][day] = 'S'
-                shift_count[employee] += 1
+    for week in range(weeks):
+        for day in allowed_days:
+            day_index = week * 7 + (day - 1)
+            if shift_count[employee][week] < MAX_SHIFTS:
+                if schedule[employee][day_index + 1] == '':
+                    schedule[employee][day_index + 1] = 'S'
+                    shift_count[employee][week] += 1
 
-# Function to get available staff
+# Helper to get available staff for a day
 def get_available_staff(staff_list, exclude=[], day_index=None):
-    return [p for p in staff_list if shift_count[p] < MAX_SHIFTS and p not in exclude and (p not in routine_work_days or day_index + 1 in routine_work_days[p])]
+    week = day_index // 7
+    weekday = (day_index % 7) + 1  # Sunday = 1, Saturday = 7
+    return [
+        p for p in staff_list
+        if shift_count[p][week] < MAX_SHIFTS
+        and p not in exclude
+        and (p not in routine_work_days or weekday in routine_work_days[p])
+    ]
 
-# Assign remaining shifts
+# Assign shifts for 42 days
 for i, day in enumerate(days):
-    # Select 2 charge persons
+    week = i // 7
+
+    # Select charge persons
     available_charges = get_available_staff(charge_persons, day_index=i)
     charge_selected = random.sample(available_charges, 2) if len(available_charges) >= 2 else available_charges
 
@@ -45,40 +56,36 @@ for i, day in enumerate(days):
     available_others = get_available_staff(all_employees, exclude=charge_selected, day_index=i)
     others_selected = random.sample(available_others, min(6, len(available_others)))
 
-    # Update shift count
     for person in charge_selected:
-        shift_count[person] += 1
+        shift_count[person][week] += 1
         schedule[person][i + 1] = 'C1' if charge_selected.index(person) == 0 else 'C2'
 
     for person in others_selected:
-        shift_count[person] += 1
+        shift_count[person][week] += 1
         schedule[person][i + 1] = 'S'
 
-# Save schedule to CSV
 with open('weekly_schedule.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Name'] + [f'Day {i+1}' for i in range(len(days))])
     for row in schedule.values():
         writer.writerow(row)
 
-# Read the schedule and count staff per day
+# Analyze and highlight under-scheduled
 staff_counts = [0] * len(days)
-under_scheduled_days = []
 under_scheduled_people = []
 
 with open('weekly_schedule.csv', 'r') as file:
     reader = csv.reader(file)
-    header = next(reader)  # Skip header
+    header = next(reader)
     for row in reader:
         shifts_worked = 0
         for i in range(1, len(row)):
-            if row[i]:  # Count non-empty slots
+            if row[i]:
                 staff_counts[i-1] += 1
                 shifts_worked += 1
-        if shifts_worked < MAX_SHIFTS:
+        if shifts_worked < MAX_SHIFTS * weeks:
             under_scheduled_people.append(row[0])
 
-# Highlight columns where staff count is not 8
 highlighted_schedule = []
 with open('weekly_schedule.csv', 'r') as file:
     reader = csv.reader(file)
@@ -92,9 +99,9 @@ with open('weekly_schedule.csv', 'r') as file:
         ]
         highlighted_schedule.append(new_row)
 
-# Save highlighted schedule
-with open('highlighted_schedule.csv', 'w', newline='') as file:
+
+with open('final_schedule.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(highlighted_schedule)
 
-print("Highlighted schedule saved as 'highlighted_schedule.csv'")
+print("6-week schedule saved as 'final_schedule.csv'")
