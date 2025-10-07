@@ -1,6 +1,6 @@
 ### Auto Scheduling
 
-An intelligent scheduling system for hospital night shift staff that automatically creates fair and balanced 6-week schedules while respecting staff constraints, role requirements, and time-off requests.
+An intelligent scheduling system for hospital day/night shift staff that automatically creates fair and balanced 6-week schedules while respecting staff constraints, role requirements, and time-off requests.
 
 ### Features
 
@@ -18,19 +18,19 @@ Comprehensive Metrics: Provides detailed fairness analysis and workload distribu
 
 ### Key Constraints
 
-Maximum 6 staff per night
+Maximum 6 staff per shift
 
 Maximum 3 shifts per week per staff member
 
 Required roles each night:
 
-  Charge Nurse
+  - Charge Nurse
 
-  Backup Charge Nurse
+  - Backup Charge Nurse
 
-  NICU/PICU Specialist
+  - NICU/PICU Specialist
 
-  Regular staff to fill remaining slots (ER/ICUs trained)
+  - Regular staff to fill remaining slots (ER/ICUs trained)
 
 Staff can only be assigned to roles they're trained for
 
@@ -39,8 +39,8 @@ Time-off requests are strictly honored
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/night-shift-scheduler.git
-cd night-shift-scheduler
+git clone https://github.com/ezhucs1/auto_scheduling.git
+cd auto_scheduling
 pip install numpy
 ```
 
@@ -96,7 +96,7 @@ Individual Statistics: Per-staff breakdown of total days and weekly distribution
 ******************************************************
 ### Example Output
 ```python
-=== NIGHT SHIFT SCHEDULING (6 Weeks) ===
+=== SHIFT SCHEDULING (6 Weeks) ===
 
 --- Week 1 Schedule ---
 Sun: Staff [1, 2, 3, 4, 5, 6] - Roles: {'charge': 1, 'backup_charge': 1, 'nicu': 1, 'regular': 3}
