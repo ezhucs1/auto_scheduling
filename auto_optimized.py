@@ -263,7 +263,7 @@ def run_scheduling():
     scheduler.set_schedule_start_date('2024-09-22')
     scheduler.add_request_off(1, '2024-09-24', '2024-09-26')  # Alice off Sept 24-26
     
-    print("=== NIGHT SHIFT SCHEDULING (6 Weeks) ===\n")
+    print("=== SHIFT SCHEDULING (6 Weeks) ===\n")
     
     # Schedule 6 weeks
     schedule = scheduler.schedule_multiple_weeks(staff, num_weeks=6)
